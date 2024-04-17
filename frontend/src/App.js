@@ -8,9 +8,30 @@ import Profile from "./components/auth/Profile";
 import "./App.css";
 
 const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const authenticate = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      console.log(token);
+      if (token) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    } catch (err) {
+      console.log(err);
+      setLoggedIn(false);
+    }
+  };
+
+  useEffect(() => {
+    authenticate();
+  }, []);
+
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar loggedIn={authenticate} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
