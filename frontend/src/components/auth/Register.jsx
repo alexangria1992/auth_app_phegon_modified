@@ -10,6 +10,7 @@ const Register = () => {
     password: "",
     confPassword: "",
   });
+  const [message, setMessageToRender] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +20,11 @@ const Register = () => {
         formData
       );
       console.log("Registration successful");
-      navigate("/login");
+      // navigate("/login");
+      const message = (
+        <span style={{ color: "green" }}>You have successfully registered</span>
+      );
+      setMessageToRender(message);
     } catch (error) {
       console.log("registration Failed" + error);
     }
@@ -74,6 +79,9 @@ const Register = () => {
         <br />
         <button type="submit">Register</button>
       </form>
+      <br />
+      {message}
+
       <p>
         Already have an account? <Link to="/login">Login</Link>
       </p>
