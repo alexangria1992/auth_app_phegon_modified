@@ -29,9 +29,14 @@ const App = () => {
     authenticate();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+  };
+
   return (
     <BrowserRouter>
-      <Navbar loggedIn={authenticate} />
+      <Navbar loggedIn={loggedIn} handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
