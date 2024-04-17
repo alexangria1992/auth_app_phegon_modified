@@ -27,6 +27,10 @@ const Register = () => {
       setMessageToRender(message);
     } catch (error) {
       console.log("registration Failed" + error);
+      const message = (
+        <span style={{ color: "red" }}>Unsuccessful Registration</span>
+      );
+      setMessageToRender(message);
     }
   };
 
